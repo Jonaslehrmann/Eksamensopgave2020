@@ -16,23 +16,17 @@ form.addEventListener('submit', function(e){
 });
 
 submitBtn.addEventListener('click', function(){
-    const fullNameValue = fullName.value
-    const passwordValue = password.value
-    const data ={fullNameValue,passwordValue}
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application.json'
-        },
-        body:JSON.stringify(data)
-    };
-    fetch('/api',options).then(response => {
-        console.log(response)
-    });
-
     
-    localStorage.setItem('name', fullNameValue);
-    localStorage.setItem('password', passwordValue);
+    let user = {
+        fullNameValue: fullName.value,
+        passwordValue: password.value
+    }
+    
+
+    uploadUser(user)
+    
+    localStorage.setItem('name', fullName.value);
+    localStorage.setItem('password', password.value); 
     nameDisplayCheck()
 })
 
@@ -58,4 +52,20 @@ function nameDisplayCheck() {
         }
     }
 
+function uploadUser(){
+    fetch('http://localhost:3003/user', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(),
+      }).then(response => response.json()).then(data => 
+          {
+        alert('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      };
+  
 document.body.onload = nameDisplayCheck
