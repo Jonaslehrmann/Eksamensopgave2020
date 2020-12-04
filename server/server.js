@@ -6,12 +6,10 @@ app.listen(3003, () => console.log('listening on 3003'));
 app.use(express.json({limit: '10mb'}));
 app.use(express.static('../views'));
 
-app.post('/user', (req,res) => {
+app.post('http://localhost:3003/user', (req,res) => {
     console.log(req.body)
     console.log('I got a request')
-    const data = request.body;
-    database.push(data);
-    console.log(database)
+    const data = req.body;
     response.json({
         status: 'success',
     })
