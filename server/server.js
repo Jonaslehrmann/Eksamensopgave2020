@@ -37,3 +37,8 @@ app.post('/login', (req,res) => {
         } 
       } 
 );
+app.delete('/delete',(req,res) => {
+    let dataUserDelete = JSON.parse(fs.readFileSync('../storage/User.json'))
+    // splice!!!
+
+});

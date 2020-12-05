@@ -1,3 +1,9 @@
+window.onload = function checkLogin(){
+    if(localStorage.getItem('username') != null){
+    alert("You're already signed in! Click okay to go to the home page ")
+    location.href=('homepage.html')
+    }
+}
 const username = document.getElementById('username');
 const password = document.getElementById('password');
 const form = document.querySelector('form');

@@ -13,3 +13,25 @@ function logout(){
     alert('You are now logged out')
     location.href=('login.html')
 }
+
+
+
+function deleteUser(user){
+
+    console.log(user)  
+    fetch('http://localhost:3003/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      }).then(res => res.json())
+      .then(data => 
+          {
+        alert('Your account has successfully been created');
+        location.href="login.html"
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      };
