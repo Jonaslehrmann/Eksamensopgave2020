@@ -29,26 +29,19 @@ submitBtn.addEventListener('click', function(){
         passwordValue: password.value,
     }
  
-
-    uploadUser(user)
+    validateUser(user)
     
-    localStorage.setItem('name', fullName.value);
+    /*localStorage.setItem('name', fullName.value);
     localStorage.setItem('username',username.value);
     localStorage.setItem('dateOfBirth', dateOfBirth.value);
     localStorage.setItem('gender', gender.value);
-    localStorage.setItem('password', password.value);
-    nameDisplayCheck()
+    localStorage.setItem('password', password.value);*/
+    //nameDisplayCheck()
+
+    uploadUser(user)
 })
 
-forgetBtn.addEventListener('click', function(){
-    localStorage.removeItem('name')
-    localStorage.removeItem('password')
-    localStorage.removeItem('gender')
-    localStorage.removeItem('dateOfBirth')
-    localStorage.removeItem('username')
-    nameDisplayCheck()
-})
-
+/*
 function nameDisplayCheck() {
     if(localStorage.getItem('name')){
         let name = localStorage.getItem('name');
@@ -64,20 +57,44 @@ function nameDisplayCheck() {
         }
     }
 
-function uploadUser(){
+function validateUser(){
+    submitBtn.addEventListener("click", function(){
+        if(fullName.value == ""){
+            errorText += "Please enter your full name\n";            
+        }        
+        if(password.value == ""){
+            errorText += "Please enter a password"
+        }
+        if(birthday.value == "") {
+            errorText += "Birthday is not valid or not in valid format\n";
+        }
+        if(username.value == ""){
+            errorText += "You need to input a valid gender. Either female or male\n";
+        }
+        
+        if(errorText != ""){
+            document.getElementById("message").innerText = errorText;
+        }else {
+            next()
+        }
+    })}
+*/
+function uploadUser(user){
+console.log(user)  
     fetch('http://localhost:3003/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(),
-      }).then(response => response.json()).then(data => 
+        body: JSON.stringify(user),
+      }).then(res => res.json())
+      .then(data => 
           {
-        alert('Success:', data);
+        alert('Success', data);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
       };
 
-document.body.onload = nameDisplayCheck
+// document.body.onload = nameDisplayCheck
