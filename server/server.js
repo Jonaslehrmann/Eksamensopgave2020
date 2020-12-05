@@ -21,12 +21,17 @@ app.post('/user', (req,res) => {
 
 
 app.post('/login', (req,res) => {
-
+    console.log(req.body)
     let dataUser = JSON.parse(fs.readFileSync('../storage/User.json'))
-    dataUser.push(req.body)
     res.json(dataUser)
-    
-    fs.writeFile('../storage/User.json', JSON.stringify(dataUser, null, 4), (err) => {
-        if (err) throw err;
-        console.log('Data written to file');
-})});
+    for (i = 0; i < dataUser.length; i++) {
+        if (req.body.usernameValue == dataUser[i].username 
+            && req.body.passwordValue == dataUser[i].password)
+                {alert('You have successfully logged in')
+                location.href="homepage.html"
+            }else {
+                alert('Your username and password do not match. Try again!')
+            }
+        } 
+      }
+);

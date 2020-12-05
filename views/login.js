@@ -11,10 +11,13 @@ loginButton.addEventListener('click', function(){
         usernameAttempt: username.value,
         passwordAttempt: password.value,
     }   
+
+    peterDreyer(userAttempt);
+
     console.log(userAttempt)
 })
 
-function createUserAttempt(){
+/*function createUserAttempt(){
     
     
     let userAttempt = {
@@ -23,30 +26,23 @@ function createUserAttempt(){
    
     }   
     console.log(userAttempt)
-}
-/*
-function checkLogin(user){
+}*/
+
+function peterDreyer(userAttempt){
     fetch('http://localhost:3003/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(userAttempt),
       }).then(res => res.json())
       .then(data => 
           {
         alert("You've successfully logged in");
-        location.href="homepage.html"
+        
       })
       .catch((error) => {
         console.error('Error:', error);
       });
       };
-*/
-/*for (i = 0; i < users.length; i++) {
-    if (usernameOutput == usernameValue[i]){
 
-
-    }
-  }
-  */
