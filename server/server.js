@@ -9,16 +9,12 @@ app.use(express.json({limit: '10mb'}));
 app.use(express.static('../views'));
 
 app.post('/user', (req,res) => {
-    console.log(req.body)
-    console.log('I got a request')
 
-    let dataarray = JSON.parse(fs.readFileSync('../storage/User.json'))
-    console.log(dataarray)
-    dataarray.push(req.body)
-    res.json(dataarray)
+    let dataUser = JSON.parse(fs.readFileSync('../storage/User.json'))
+    dataUser.push(req.body)
+    res.json(dataUser)
     
-    
-    fs.writeFile('../storage/User.json', JSON.stringify(dataarray, null, 4), (err) => {
+    fs.writeFile('../storage/User.json', JSON.stringify(dataUser, null, 4), (err) => {
         if (err) throw err;
         console.log('Data written to file');
 })});
