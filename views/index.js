@@ -39,7 +39,7 @@ function validateUser(){
         if(username.value < 5){
             errorText += "You need to input a valid gender. Either female or male\n";
         }
-       
+
         if(errorText != ""){
             document.getElementById("message").innerText = errorText;
         }else {

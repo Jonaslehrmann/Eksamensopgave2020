@@ -12,23 +12,12 @@ loginButton.addEventListener('click', function(){
         passwordAttempt: password.value,
     }   
 
-    peterDreyer(userAttempt);
+    loginAttempt(userAttempt);
 
     console.log(userAttempt)
 })
 
-/*function createUserAttempt(){
-    
-    
-    let userAttempt = {
-        usernameAttempt: username.value,
-        passwordAttempt: password.value,
-   
-    }   
-    console.log(userAttempt)
-}*/
-
-function peterDreyer(userAttempt){
+function loginAttempt(userAttempt){
     fetch('http://localhost:3003/login', {
         method: 'POST',
         headers: {
@@ -37,9 +26,15 @@ function peterDreyer(userAttempt){
         body: JSON.stringify(userAttempt),
       }).then(res => res.json())
       .then(data => 
-          {
-        alert("You've successfully logged in");
-        
+        { if (data = "success"){
+            alert("welcome to My Dating Site")
+            localStorage.setItem("username", username.value)
+            location.href="homepage.html"
+        } else {
+            alert("Your username and password do not match. Try again!")
+        }
+
+
       })
       .catch((error) => {
         console.error('Error:', error);

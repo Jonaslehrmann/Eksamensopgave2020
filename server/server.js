@@ -8,30 +8,32 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 app.use(express.json({limit: '10mb'}));
 app.use(express.static('../views'));
 
+
+
+// Sign in controller
 app.post('/user', (req,res) => {
 
-    let dataUser = JSON.parse(fs.readFileSync('../storage/User.json'))
-    dataUser.push(req.body)
-    res.json(dataUser)
+    let dataUserSignUp = JSON.parse(fs.readFileSync('../storage/User.json'))
+    dataUserSignUp.push(req.body)
+    res.json(dataUserSignUp)
     
-    fs.writeFile('../storage/User.json', JSON.stringify(dataUser, null, 4), (err) => {
+    fs.writeFile('../storage/User.json', JSON.stringify(dataUserSignUp, null, 4), (err) => {
         if (err) throw err;
         console.log('Data written to file');
 })});
 
 
 app.post('/login', (req,res) => {
-    console.log(req.body)
-    let dataUser = JSON.parse(fs.readFileSync('../storage/User.json'))
-    res.json(dataUser)
-    for (i = 0; i < dataUser.length; i++) {
-        if (req.body.usernameValue == dataUser[i].username 
-            && req.body.passwordValue == dataUser[i].password)
-                {alert('You have successfully logged in')
-                location.href="homepage.html"
+    let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
+
+    for (i = 0; i < dataUserLogin.length; i++) {
+        if (req.body.usernameValue == dataUserLogin[i].username 
+            && req.body.passwordValue == dataUserLogin[i].password){
+                res.json('success')
+                break
             }else {
-                alert('Your username and password do not match. Try again!')
+                res.json('fail')
             }
         } 
-      }
+      } 
 );
