@@ -13,3 +13,4 @@ function logout(){
     alert('You are now logged out')
     location.href=('login.html')
 }
+

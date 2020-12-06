@@ -5,5 +5,26 @@
         "genderValue": "male",
         "passwordValue": "jeghedderjonas123",
         "likes": []
+    },
+    {
+        "fullNameValue": "Emma Watson",
+        "usernameValue": "emma123",
+        "genderValue": "female",
+        "passwordValue": "emma123",
+        "likes": []
+    },
+    {
+        "fullNameValue": "Mads Mikkelsen",
+        "usernameValue": "druk123",
+        "genderValue": "male",
+        "passwordValue": "druk123",
+        "likes": []
+    },
+    {
+        "fullNameValue": "Nick Jonas",
+        "usernameValue": "brother123",
+        "genderValue": "male",
+        "passwordValue": "brother123",
+        "likes": []
     }
 ]

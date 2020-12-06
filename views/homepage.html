@@ -11,12 +11,18 @@
         <a href="matchSite.html">
             <input type="button" value="Find love!" />
          </a>
-         <a href="profile.html">
-            <input type="button" value="View and edit your profile" />
-         </a>
-         <input id="deleteProfile" type="button" value="Delete your profile">
+         
+         <input type="button" value="View and edit your profile" onclick="seeUser()" />
+         <input id="checkMatches" type="button" onclick="checkMatches()" value="Check your matches">
+         <input id="deleteProfile" type="button" onclick="deleteUser()" value="Delete your profile">
          <input id="logout" type="button" onclick="logout()" value="Log out">
 
+
+
+         <div id="fullName"></div>
+         <div id="username"></div>
+         <div id="gender"></div>
+         <div id="password"></div>
     </body>
 
 
