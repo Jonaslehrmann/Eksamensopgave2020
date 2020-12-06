@@ -1,0 +1,44 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+
+    <h1>Here you can edit your profile</h1>
+    <h2>If you do not wish to edit certain elements, please re-enter the correct values</h2>
+    
+    <a href="homepage.html">
+        <input type="button" value="Return to homepage" />
+    </a>
+    <a href="profile.html">
+        <input type="button" value="View your profile"/>
+    </a><br><br><br><br>
+    <form>
+        <div class="editProfile">
+            <label for="fullName">Your full name</label>
+            <input id="fullName" type="text" required> <br>
+            <label for="username">your username</label>
+            <input id="username" type="text" required> <br>
+            <label for="gender">Your gender</label>
+            <select name="gender" id="gender" required>
+                <option value="other">Other</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select><br>
+            <label for="password"> Password</label>
+            <input type="password" id="password" required>
+            <br>
+            <div id="message"></div>
+            <br><br>
+            <input id="submitUserEdit" type="submit" value="Edit your user!">
+        </div>
+
+    </form>
+    <script src="profileEdit.js"></script>
+</body>
+
+</html>

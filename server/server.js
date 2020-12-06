@@ -87,3 +87,41 @@ app.post('/login', (req, res) => {
         res.json('fail')
     }
 });
+
+// Edit controller
+app.post('/userEdit', (req, res) => {
+    console.log('vi når til serveren')
+    let dataUserStorage = JSON.parse(fs.readFileSync('../storage/User.json'))
+
+    let succesfulLogin = false;
+    for (var i = 0; i < dataUserStorage.length; i++){
+        if (dataUserStorage[i].usernameValue == req.body.usernameToken){
+            let likedUsers = dataUserStorage[i].likes
+            console.log(likedUsers)
+            dataUserStorage.splice([i], 1)
+            
+            let editedUser = {
+                fullNameValue: req.body.fullNameValue,
+                usernameValue: req.body.usernameValue,
+                genderValue: req.body.genderValue,
+                passwordValue: req.body.passwordValue,
+                likes: likedUsers
+            }
+            fs.writeFile('../storage/User.json', JSON.stringify(editedUser, null, 4), (err) => {
+                if (err) throw err;
+            })
+            res.json('success')
+             succesfulLogin = true;
+        }
+    }
+    if (succesfulLogin = false){
+        alert("Something went wrong - try again")
+    }
+    dataUserStorage.push(req.body)
+    res.json(dataUserStorage)
+
+    /*fs.writeFile('../storage/User.json', JSON.stringify(dataUserStorage, null, 4), (err) => {
+        if (err) throw err;
+        console.log('Data written to file');
+    }) */
+});

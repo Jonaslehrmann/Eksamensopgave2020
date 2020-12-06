@@ -1,23 +1,16 @@
 [
     {
+        "fullNameValue": "qweqewwqe",
+        "usernameValue": "qweqweqe",
+        "genderValue": "other",
+        "passwordValue": "qweqweqwe",
+        "likes": []
+    },
+    {
         "fullNameValue": "Jonas Lehrmann",
         "usernameValue": "jonaslehrmann",
         "genderValue": "male",
-        "passwordValue": "jeghedderjonas123",
-        "likes": []
-    },
-    {
-        "fullNameValue": "Emma Watson",
-        "usernameValue": "emma123",
-        "genderValue": "female",
-        "passwordValue": "emma123",
-        "likes": []
-    },
-    {
-        "fullNameValue": "Mads Mikkelsen",
-        "usernameValue": "druk123",
-        "genderValue": "male",
-        "passwordValue": "druk123",
+        "passwordValue": "jonas123",
         "likes": []
     }
 ]

@@ -5,7 +5,6 @@ window.onload = function checkLogin() {
     }
 }
 const form = document.querySelector('form');
-const rememberDiv = document.querySelector('.signUp');
 const fullName = document.getElementById('fullName');
 const password = document.getElementById('password');
 const username = document.getElementById('username');
