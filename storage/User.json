@@ -19,12 +19,5 @@
         "genderValue": "male",
         "passwordValue": "druk123",
         "likes": []
-    },
-    {
-        "fullNameValue": "Nick Jonas",
-        "usernameValue": "brother123",
-        "genderValue": "male",
-        "passwordValue": "brother123",
-        "likes": []
     }
 ]

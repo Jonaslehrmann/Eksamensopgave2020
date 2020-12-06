@@ -25,36 +25,41 @@ app.post('/user', (req, res) => {
 
 // Show profile Controller
 
-app.get('/userGet', (req,res) => {
-    let dataUser = JSON.parse(fs.readFileSync('../storage/User.json'))
+app.post('/userGet', (req, res) => {
+    let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
 
-    for (i = 0; i < dataUser.length; i++) {
-        if (localStorage.getItem('username') == dataUser[i].username) 
-            {
-                res.json(dataUser[i])
-                break
-            }else {
-                res.json('fail')
-            }
-        } 
-      } 
-); // VED IKKE OM DET HER VIRKER - HELP
+    for (var i = 0; i < dataUserLogin.length; i++) {
+        let retrievedUser = false;
+        if (
+            req.body.usernameAttempt == dataUserLogin[i].usernameValue
+        ) {
+            res.json(dataUserLogin[i]);
+            retrievedUser = true;
+        }
+    }
+    if (retrievedUser == false) {
+        res.json('fail')
+    }
+});
 
 
 // Delete User Controller
 app.delete('/deleteuser', (req, res) => {
+    let mongoDBSucks = true;
     let dataUserDelete = JSON.parse(fs.readFileSync('../storage/User.json'))
-    let loggedInUsername = JSON.parse(req.body)
-    console.log(loggedInUsername)
-    console.log(dataUserDelete)
-    for (var i = 0; i < dataUserDelete.length; i++) {
-        if (loggedInUsername == dataUserDelete[i].usernameValue) {
-            dataUserDelete.splice(i, 1)
-            res.json('user deleted')
-        } else {
-            res.json('fail')
-        }
 
+    for (var i = 0; i < dataUserDelete.length; i++) {
+        if (req.body.usernameDelete == dataUserDelete[i].usernameValue) {
+            dataUserDelete.splice([i], 1)
+            fs.writeFile('../storage/User.json', JSON.stringify(dataUserDelete, null, 4), (err) => {
+                if (err) throw err;
+            })
+            res.json('user deleted')
+            mongoDBSucks = false
+        }
+    }
+    if (mongoDBSucks == true) {
+        res.json('fail')
     }
 });
 
@@ -68,7 +73,7 @@ app.post('/login', (req, res) => {
         if (
             req.body.usernameAttempt == dataUserLogin[i].usernameValue
             && req.body.passwordAttempt == dataUserLogin[i].passwordValue) {
-            res.json('success');
+            res.json(dataUserLogin[i]);
             succesfulLogin = true;
         }
     }

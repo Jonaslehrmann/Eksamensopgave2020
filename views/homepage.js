@@ -30,16 +30,16 @@ function deleteUser2(){
 
 function deleteUser(deleteProfile) {
 
+
     console.log(deleteProfile)
     fetch('http://localhost:3003/deleteuser', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(deleteProfile.usernameDelete),
+        body: JSON.stringify(deleteProfile),
     }).then(res => res.json())
         .then(data => {
-            console.log(res.json())
             if (data == 'user deleted') {
                 alert('Your account has successfully been deleted');
                 localStorage.removeItem('username')

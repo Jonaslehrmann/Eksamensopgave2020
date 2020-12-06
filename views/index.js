@@ -38,7 +38,7 @@ function validateUser() {
         errorText += "Your password must contain atleast 6 characters\n"
     }
     if (username.value < 5) {
-        errorText += "You need to input a valid gender. Either female or male\n";
+        errorText += "your username must contain atleast 6 characters\n";
     }
 
     if (errorText != "") {

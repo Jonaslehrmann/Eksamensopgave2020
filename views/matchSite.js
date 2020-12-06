@@ -6,8 +6,6 @@ window.onload = function checkLogin() {
     }
 }
 
-const logoutButton = document.getElementById('logout');
-
 function logout() {
     localStorage.removeItem("username");
     alert('You are now logged out')

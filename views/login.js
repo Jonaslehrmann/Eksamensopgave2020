@@ -28,9 +28,9 @@ function loginAttempt() {
         body: JSON.stringify(userAttempt)
     }).then(res => res.json()).then(data => {
 
-        if (data == "success") {
+        if (data != "fail") {
             alert("welcome to My Dating Site")
-            localStorage.setItem("username", JSON.stringify(username.value))
+            localStorage.setItem("username", JSON.stringify(data.usernameValue))
             location.href = "homepage.html"
         } else {
             alert("Your username and password do not match. Try again!")
