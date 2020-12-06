@@ -19,21 +19,24 @@ function logout() {
 }
 
 
-
-function deleteUser() {
+function deleteUser2(){
     let profileToken = JSON.parse(localStorage.getItem('username'))
-    
     let deleteProfile = {
         usernameDelete: profileToken
     } 
-    console.log(deleteProfile)
 
-    fetch('http://localhost:3003/delete', {
-        method: 'POST',
+    deleteUser(deleteProfile)
+}
+
+function deleteUser(deleteProfile) {
+
+    console.log(deleteProfile)
+    fetch('http://localhost:3003/deleteuser', {
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(deleteProfile)
+        body: JSON.stringify(deleteProfile.usernameDelete),
     }).then(res => res.json())
         .then(data => {
             console.log(res.json())

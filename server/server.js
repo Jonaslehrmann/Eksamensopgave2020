@@ -42,7 +42,7 @@ app.get('/userGet', (req,res) => {
 
 
 // Delete User Controller
-app.delete('/delete', (req, res) => {
+app.delete('/deleteuser', (req, res) => {
     let dataUserDelete = JSON.parse(fs.readFileSync('../storage/User.json'))
     let loggedInUsername = JSON.parse(req.body)
     console.log(loggedInUsername)
