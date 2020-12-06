@@ -23,7 +23,8 @@ app.post('/user', (req, res) => {
     })
 });
 
-/*
+// Show profile Controller
+
 app.get('/userGet', (req,res) => {
     let dataUser = JSON.parse(fs.readFileSync('../storage/User.json'))
 
@@ -38,14 +39,17 @@ app.get('/userGet', (req,res) => {
         } 
       } 
 ); // VED IKKE OM DET HER VIRKER - HELP
-*/
+
+
+// Delete User Controller
 app.delete('/delete', (req, res) => {
     let dataUserDelete = JSON.parse(fs.readFileSync('../storage/User.json'))
-
+    let loggedInUsername = JSON.parse(req.body)
+    console.log(loggedInUsername)
+    console.log(dataUserDelete)
     for (var i = 0; i < dataUserDelete.length; i++) {
-        if (localStorage.getItem('username') == dataUserDelete[i].usernameValue) {
+        if (loggedInUsername == dataUserDelete[i].usernameValue) {
             dataUserDelete.splice(i, 1)
-            localStorage.removeItem('username')
             res.json('user deleted')
         } else {
             res.json('fail')
@@ -54,10 +58,10 @@ app.delete('/delete', (req, res) => {
     }
 });
 
-
+// Login controller
 app.post('/login', (req, res) => {
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
-   
+
 
     for (var i = 0; i < dataUserLogin.length; i++) {
         let succesfulLogin = false;
@@ -66,9 +70,9 @@ app.post('/login', (req, res) => {
             && req.body.passwordAttempt == dataUserLogin[i].passwordValue) {
             res.json('success');
             succesfulLogin = true;
-        } 
-    }
-        if (succesfulLogin = false){
-            res.json('fail')
         }
+    }
+    if (succesfulLogin = false) {
+        res.json('fail')
+    }
 });

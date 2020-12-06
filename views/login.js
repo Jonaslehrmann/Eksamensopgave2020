@@ -30,7 +30,7 @@ function loginAttempt() {
 
         if (data == "success") {
             alert("welcome to My Dating Site")
-            localStorage.setItem("username", username.value)
+            localStorage.setItem("username", JSON.stringify(username.value))
             location.href = "homepage.html"
         } else {
             alert("Your username and password do not match. Try again!")

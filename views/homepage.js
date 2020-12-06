@@ -1,3 +1,7 @@
+const { json } = require("body-parser");
+const { parse } = require("path");
+const { profile } = require("console");
+
 window.onload = function checkLogin() {
     console.log(localStorage.getItem('username'))
     if (localStorage.getItem('username') == null) {
@@ -17,19 +21,26 @@ function logout() {
 
 
 function deleteUser() {
+    let profileToken = JSON.parse(localStorage.getItem('username'))
+    
+    let deleteProfile = {
+        usernameDelete: profileToken
+    } 
+    console.log(deleteProfile)
 
     fetch('http://localhost:3003/delete', {
-        method: 'DELETE',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(),
+        body: JSON.stringify(deleteProfile)
     }).then(res => res.json())
         .then(data => {
             console.log(res.json())
-            if(data == 'user deleted'){
-            alert('Your account has successfully been deleted');
-            location.href = "index.html"
+            if (data == 'user deleted') {
+                alert('Your account has successfully been deleted');
+                localStorage.removeItem('username')
+                location.href = "index.html"
             } else {
                 alert('Something went wrong')
             }
@@ -37,16 +48,17 @@ function deleteUser() {
         .catch((error) => {
             console.error('Error:', error);
         });
+
 };
 
 
-function seeUser(user) {
-    get('http://localhost:3003/user', {
-        method: 'GET',
+function seeUser() {
+    fetch('http://localhost:3003/user', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(),
     }).then(res => res.json())
         .then(data => {
             console.log(data.username)
