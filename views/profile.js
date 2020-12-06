@@ -25,9 +25,10 @@ function retrieveUserInfo(retrieveUsername){
     }).then(res => res.json())
         .then(data => {
             if (data != 'fail') {
-                console.log("hej")
-                
-                
+                document.getElementById("username").innerHTML = data.usernameValue
+                document.getElementById("fullName").innerHTML = data.fullNameValue
+                document.getElementById("gender").innerHTML = data.genderValue
+                document.getElementById("password").innerHTML = data.passwordValue
             } else {
                 alert('Something went wrong')
             }

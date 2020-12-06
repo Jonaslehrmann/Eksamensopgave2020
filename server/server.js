@@ -14,6 +14,13 @@ app.use(express.static('../views'));
 app.post('/user', (req, res) => {
 
     let dataUserSignUp = JSON.parse(fs.readFileSync('../storage/User.json'))
+    
+    //Sørger for at username er unikt ved at tjekke med User.json
+    for (var i = 0; i < dataUserSignUp.length; i++){
+        if (dataUserSignUp[i].usernameValue == req.body.usernameValue){
+            res.json('fail')
+        }
+    }
     dataUserSignUp.push(req.body)
     res.json(dataUserSignUp)
 
@@ -24,14 +31,13 @@ app.post('/user', (req, res) => {
 });
 
 // Show profile Controller
-
 app.post('/userGet', (req, res) => {
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
-
+    let retrievedUser = false;
     for (var i = 0; i < dataUserLogin.length; i++) {
-        let retrievedUser = false;
+        
         if (
-            req.body.usernameAttempt == dataUserLogin[i].usernameValue
+            req.body.username == dataUserLogin[i].usernameValue
         ) {
             res.json(dataUserLogin[i]);
             retrievedUser = true;
