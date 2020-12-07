@@ -42,7 +42,7 @@ function retrieveUserInfo(retrieveUsername){
 }
 // logout button keeps the user saved in the data, but removes the user from localstorage
 function logout() {
-    localStorage.removeItem("username");
+    localStorage.clear();
     alert('You are now logged out')
     location.href = ('login.html')
 }

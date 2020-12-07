@@ -8,6 +8,23 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static('../views'));
 
+//HARDCODED USERS
+
+class UserProfile {
+    constructor(fullName, username, gender, password, likes) {
+        this.fullName = fullName;
+        this.username = username;
+        this.gender = gender;
+        this.password = password;
+        this.likes = likes
+    }
+}
+
+let user1 = new UserProfile ("Patrik Patriksen","patrikmanden123","male","",["jonas1"])
+let user2 = new UserProfile ("Patricia Patriciasen","patriciaersej123","female","",[])
+let user3 = new UserProfile ("Peter Petersen","peter123","male","peter1234","jonas1")
+
+let users = [user1,user2,user3]
 
 
 // Register controller
@@ -135,18 +152,28 @@ app.post('/userEdit', (req, res) => {
     } 
 });
 
-//LIKE
+//SHOW HARDCODED USER
 //Work in progress
 
-app.post('/like', (req, res, next) => {
-    console.log(req.body)
-    let me = req.body.username
-    let others = req.body.username2
+app.get('/importUser', (req, res, next) => {
+    console.log('vi nåede til importUser')
+    res.json(users)
+})
 
-    for (var i = 0; i < users.length; i++) {
-        if (user[i].username === me) {
-            user[i].likes.push(others)
+
+//ADD LIKES TO JSON FILE
+
+app.post('/likes', (req, res) => {
+    let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
+    console.log(req.body)
+
+    for (var i = 0; i < dataUserLogin.length; i++) {
+        if (
+            req.body[0] == dataUserLogin[i].usernameValue
+            ) {
+            dataUserLogin[i].likes.push(req.body[1])
+            res.json('success')
         }
     }
-    res.json(myProfile)
-})
+    
+});

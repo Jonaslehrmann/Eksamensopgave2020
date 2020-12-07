@@ -13,7 +13,7 @@ window.onload = function checkLogin() {
 const logoutButton = document.getElementById('logout');
 // the function is invoked with the onclick() function
 function logout() {
-    localStorage.removeItem("username");
+    localStorage.clear();
     alert('You are now logged out')
     location.href = ('login.html')
 }

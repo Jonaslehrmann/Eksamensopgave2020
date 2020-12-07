@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <script src="matchSite.js"></script>
+
 </head>
 
 <body>
@@ -14,16 +14,12 @@
     <br><br><br>
     <input id="importUser" type="button" onclick="importUser()" value="Get your first possible match">
 
-
-    <div class="users">
-        
-
-    </div>
-    
-    
-    <br>
-    <div class="fullName"></div><br>
-    <div class="gender"></div><br>
+    <div> Username</div>
+    <div class="username" id="username"></div><br>
+    <div> Their full name</div>
+    <div class="fullName" id="fullName"></div><br>
+    <div> Their gender</div>
+    <div class="gender" id="gender"></div><br>
 
 
 
@@ -32,6 +28,8 @@
 
     <input id="likeUser" type="button" onclick="likeUser()" value="LIKE">
     <input id="dislikeUser" type="button" onclick="dislikeUser()" value="DISLIKE">
+
+    <script src="matchSite.js"></script>
 </body>
 
 </html>
