@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+
 window.onload = function checkLogin() {
     console.log(localStorage.getItem('username'))
     if (localStorage.getItem('username') == null) {
@@ -34,15 +36,14 @@ function showUser(userData){
                 document.getElementById("username").innerHTML = userData[i].username
                 document.getElementById("fullName").innerHTML = userData[i].fullName
                 document.getElementById("gender").innerHTML = userData[i].gender
-                localStorage.setItem("like",userData[i].username)
+                localStorage.setItem("like",JSON.stringify(userData[i].username))
     }
     // Funktionen virker ikke med andre end den sidste user, fordi jeg ikke kan stoppe mit array
     // Jeg ville nok prøve mig ad med await eller async
 }
 
 function likeUser(){
-    let myUsername = [JSON.parse(localStorage.getItem("username")),localStorage.getItem("like")]
-    console.log(myUsername)
+    let myUsername = [JSON.parse(localStorage.getItem("username")),JSON.parse(localStorage.getItem("like"))]
     fetch('http://localhost:3003/likes', {
         method: 'POST',
         headers: {
@@ -51,11 +52,10 @@ function likeUser(){
         body: JSON.stringify(myUsername)
     }).then(res => res.json()).then(data => {
         if (data != "fail") {
-            alert("welcome to My Dating Site")
-            localStorage.setItem("username", JSON.stringify(data.usernameValue))
-            location.href = "homepage.html"
+            alert("Cool, the user has been added to your likes")
+            localStorage.removeItem('like')
         } else {
-            alert("Your username and password do not match. Try again!")
+            alert("Something went wrong")
         }
     })
 }

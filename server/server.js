@@ -156,7 +156,6 @@ app.post('/userEdit', (req, res) => {
 //Work in progress
 
 app.get('/importUser', (req, res, next) => {
-    console.log('vi nåede til importUser')
     res.json(users)
 })
 
@@ -165,15 +164,24 @@ app.get('/importUser', (req, res, next) => {
 
 app.post('/likes', (req, res) => {
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
-    console.log(req.body)
-
+    
+    let successfulLike = false;
     for (var i = 0; i < dataUserLogin.length; i++) {
+
         if (
             req.body[0] == dataUserLogin[i].usernameValue
             ) {
             dataUserLogin[i].likes.push(req.body[1])
+            successfulLike = true;
+            fs.writeFile('../storage/User.json', JSON.stringify(dataUserLogin, null, 4), (err) => {
+                if (err) throw err;
+                console.log('Data written to file');
+            })
             res.json('success')
         }
     }
-    
+    if (successfulLike == false){
+        res.json('fail')
+    }
+
 });

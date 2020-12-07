@@ -13,6 +13,15 @@
         "usernameValue": "jonas1",
         "genderValue": "male",
         "passwordValue": "jonas1",
+        "likes": [
+            "peter123"
+        ]
+    },
+    {
+        "fullNameValue": "hejhej",
+        "usernameValue": "hejhej",
+        "genderValue": "male",
+        "passwordValue": "hejhej",
         "likes": []
     }
 ]
