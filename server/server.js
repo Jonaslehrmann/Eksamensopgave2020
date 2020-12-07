@@ -10,20 +10,20 @@ app.use(express.static('../views'));
 
 
 
-// Sign in controller
+// Register controller
 app.post('/user', (req, res) => {
 
     let dataUserSignUp = JSON.parse(fs.readFileSync('../storage/User.json'))
-    
-    //Sørger for at username er unikt ved at tjekke med User.json
-    for (var i = 0; i < dataUserSignUp.length; i++){
-        if (dataUserSignUp[i].usernameValue == req.body.usernameValue){
+
+    // I make sure the password is unique by comparing to the users in storage//User.json
+    for (var i = 0; i < dataUserSignUp.length; i++) {
+        if (dataUserSignUp[i].usernameValue == req.body.usernameValue) {
             res.json('fail')
         }
     }
+    // if the password is unique, I push the new user onto the user.json file and rewrite the file
     dataUserSignUp.push(req.body)
-    res.json(dataUserSignUp)
-
+    res.json('success')
     fs.writeFile('../storage/User.json', JSON.stringify(dataUserSignUp, null, 4), (err) => {
         if (err) throw err;
         console.log('Data written to file');
@@ -34,8 +34,9 @@ app.post('/user', (req, res) => {
 app.post('/userGet', (req, res) => {
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
     let retrievedUser = false;
+    // I loop through my users to find the person whose username matches
+    // then I respond with that information
     for (var i = 0; i < dataUserLogin.length; i++) {
-        
         if (
             req.body.username == dataUserLogin[i].usernameValue
         ) {
@@ -49,13 +50,18 @@ app.post('/userGet', (req, res) => {
 });
 
 
+
 // Delete User Controller
 app.delete('/deleteuser', (req, res) => {
+
+    // Mock variable to determine success or fail in a loop
     let mongoDBSucks = true;
+
     let dataUserDelete = JSON.parse(fs.readFileSync('../storage/User.json'))
 
     for (var i = 0; i < dataUserDelete.length; i++) {
         if (req.body.usernameDelete == dataUserDelete[i].usernameValue) {
+            // I use the splice function to pick one object out of an array and then delete it
             dataUserDelete.splice([i], 1)
             fs.writeFile('../storage/User.json', JSON.stringify(dataUserDelete, null, 4), (err) => {
                 if (err) throw err;
@@ -75,8 +81,10 @@ app.post('/login', (req, res) => {
 
 
     for (var i = 0; i < dataUserLogin.length; i++) {
+        // once again a mock variable to determine success or fail
         let succesfulLogin = false;
         if (
+            // If username and password matches a user in the database, send back that information
             req.body.usernameAttempt == dataUserLogin[i].usernameValue
             && req.body.passwordAttempt == dataUserLogin[i].passwordValue) {
             res.json(dataUserLogin[i]);
@@ -88,40 +96,57 @@ app.post('/login', (req, res) => {
     }
 });
 
-// Edit controller
+// Edit profile controller
 app.post('/userEdit', (req, res) => {
-    console.log('vi når til serveren')
+    // when the server response wasn't working, I console.log'ed my way through each variable to find the failure
+    // console.log('vi når til serveren')
+    
     let dataUserStorage = JSON.parse(fs.readFileSync('../storage/User.json'))
-
     let succesfulLogin = false;
-    for (var i = 0; i < dataUserStorage.length; i++){
-        if (dataUserStorage[i].usernameValue == req.body.usernameToken){
+
+    // instead of editing in a json objekt, I thought it would be easier to delete the profile and 
+    // rewrite his file.
+    for (var i = 0; i < dataUserStorage.length; i++) {
+        if (dataUserStorage[i].usernameValue == req.body.usernameToken) {
             let likedUsers = dataUserStorage[i].likes
+            // I have to make sure that the likes won't get lost when I rewrite the user
             console.log(likedUsers)
             dataUserStorage.splice([i], 1)
-            
+
+            // I create a new user, though with the same username and likes as before
             let editedUser = {
                 fullNameValue: req.body.fullNameValue,
-                usernameValue: req.body.usernameValue,
+                usernameValue: req.body.usernameToken,
                 genderValue: req.body.genderValue,
                 passwordValue: req.body.passwordValue,
                 likes: likedUsers
             }
-            fs.writeFile('../storage/User.json', JSON.stringify(editedUser, null, 4), (err) => {
+            // I then add the user to the storage again, and then I rewrite the file
+            dataUserStorage.push(editedUser)
+            fs.writeFile('../storage/User.json', JSON.stringify(dataUserStorage, null, 4), (err) => {
                 if (err) throw err;
             })
-            res.json('success')
-             succesfulLogin = true;
+            succesfulLogin = true;
+            res.json(editedUser)
         }
     }
-    if (succesfulLogin = false){
-        alert("Something went wrong - try again")
-    }
-    dataUserStorage.push(req.body)
-    res.json(dataUserStorage)
-
-    /*fs.writeFile('../storage/User.json', JSON.stringify(dataUserStorage, null, 4), (err) => {
-        if (err) throw err;
-        console.log('Data written to file');
-    }) */
+    if (succesfulLogin == false) {
+        res.json("Something went wrong - try again")
+    } 
 });
+
+//LIKE
+//Work in progress
+
+app.post('/like', (req, res, next) => {
+    console.log(req.body)
+    let me = req.body.username
+    let others = req.body.username2
+
+    for (var i = 0; i < users.length; i++) {
+        if (user[i].username === me) {
+            user[i].likes.push(others)
+        }
+    }
+    res.json(myProfile)
+})

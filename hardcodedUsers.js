@@ -9,3 +9,6 @@ class User {
 }
 let user1 = new User ("Patrik Patriksen","patrikmanden123","male","",["Jonas Lehrmann"])
 let user2 = new User ("Patricia Patriciasen","patriciaersej123","female","",[])
+let user3 = new User ()
+
+module.exports = (User)

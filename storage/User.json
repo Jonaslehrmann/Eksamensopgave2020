@@ -1,16 +1,18 @@
 [
     {
-        "fullNameValue": "qweqewwqe",
-        "usernameValue": "qweqweqe",
-        "genderValue": "other",
-        "passwordValue": "qweqweqwe",
-        "likes": []
+        "fullNameValue": "qweqwe",
+        "usernameValue": "qweqwe",
+        "genderValue": "male",
+        "passwordValue": "qweqweqe",
+        "likes": [
+            "jan"
+        ]
     },
     {
-        "fullNameValue": "Jonas Lehrmann",
-        "usernameValue": "jonaslehrmann",
+        "fullNameValue": "jonas1",
+        "usernameValue": "jonas1",
         "genderValue": "male",
-        "passwordValue": "jonas123",
+        "passwordValue": "jonas1",
         "likes": []
     }
 ]

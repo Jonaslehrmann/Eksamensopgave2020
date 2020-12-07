@@ -1,14 +1,15 @@
+//If the user is already logged in, they will be redirected to the homepage
 window.onload = function checkLogin() {
     if (localStorage.getItem('username') != null) {
         alert("You're already signed in! Click okay to go to the home page ")
         location.href = ('homepage.html')
     }
 }
+
 const username = document.getElementById('username');
 const password = document.getElementById('password');
 const form = document.querySelector('form');
 const loginButton = document.querySelector('#loginButton');
-
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -20,6 +21,8 @@ function loginAttempt() {
         usernameAttempt: username.value,
         passwordAttempt: password.value,
     }
+
+    //I post my login attempt to the server --> server/server.js --> login controller
     fetch('http://localhost:3003/login', {
         method: 'POST',
         headers: {
@@ -27,7 +30,6 @@ function loginAttempt() {
         },
         body: JSON.stringify(userAttempt)
     }).then(res => res.json()).then(data => {
-
         if (data != "fail") {
             alert("welcome to My Dating Site")
             localStorage.setItem("username", JSON.stringify(data.usernameValue))

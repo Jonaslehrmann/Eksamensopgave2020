@@ -11,3 +11,7 @@ function logout() {
     alert('You are now logged out')
     location.href = ('login.html')
 }
+let user1 = new User ("Patrik Patriksen","patrikmanden123","male","",["Jonas Lehrmann"])
+let user2 = new User ("Patricia Patriciasen","patriciaersej123","female","",[])
+
+console.log(user1)
