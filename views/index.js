@@ -70,13 +70,13 @@ function uploadUser(user) {
         body: JSON.stringify(user),
     }).then(res => res.json())
         .then(data => {
-            if (data != 'fail'){
-            alert('Your account has successfully been created');
-            location.href = "login.html"
-        }else{
-            alert('Your username is not unique. Please choose another username')
-        }
-    })
+            if (data != 'fail') {
+                alert('Your account has successfully been created');
+                location.href = "login.html"
+            } else {
+                alert('Your username is not unique. Please choose another username')
+            }
+        })
         .catch((error) => {
             console.error('Error:', error);
         });

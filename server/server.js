@@ -9,7 +9,6 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.static('../views'));
 
 //HARDCODED USERS
-
 class UserProfile {
     constructor(fullName, username, gender, password, likes) {
         this.fullName = fullName;
@@ -19,13 +18,10 @@ class UserProfile {
         this.likes = likes
     }
 }
-
-let user1 = new UserProfile ("Patrik Patriksen","patrikmanden123","male","",["jonas1"])
-let user2 = new UserProfile ("Patricia Patriciasen","patriciaersej123","female","",[])
-let user3 = new UserProfile ("Peter Petersen","peter123","male","peter1234","jonas1")
-
-let users = [user1,user2,user3]
-
+let user1 = new UserProfile("Patrik Patriksen", "patrikmanden123", "male", "", ["jonas1"])
+let user2 = new UserProfile("Patricia Patriciasen", "patriciaersej123", "female", "", [])
+let user3 = new UserProfile("Peter Petersen", "peter123", "male", "peter1234", "jonas1")
+let users = [user1, user2, user3]
 
 // Register controller
 app.post('/user', (req, res) => {
@@ -99,7 +95,7 @@ app.post('/login', (req, res) => {
 
     for (var i = 0; i < dataUserLogin.length; i++) {
         // once again a mock variable to determine success or fail
-        
+
         if (
             // If username and password matches a user in the database, send back that information
             req.body.usernameAttempt == dataUserLogin[i].usernameValue
@@ -117,7 +113,7 @@ app.post('/login', (req, res) => {
 app.post('/userEdit', (req, res) => {
     // when the server response wasn't working, I console.log'ed my way through each variable to find the failure
     // console.log('vi når til serveren')
-    
+
     let dataUserStorage = JSON.parse(fs.readFileSync('../storage/User.json'))
     let succesfulLogin = false;
 
@@ -149,12 +145,11 @@ app.post('/userEdit', (req, res) => {
     }
     if (succesfulLogin == false) {
         res.json("Something went wrong - try again")
-    } 
+    }
 });
 
-//SHOW HARDCODED USER
-//Work in progress
 
+//retrieves the hardcoded users
 app.get('/importUser', (req, res, next) => {
     res.json(users)
 })
@@ -164,13 +159,15 @@ app.get('/importUser', (req, res, next) => {
 
 app.post('/likes', (req, res) => {
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
-    
+
     let successfulLike = false;
     for (var i = 0; i < dataUserLogin.length; i++) {
 
         if (
+            // I find the persone who's logged in
             req.body[0] == dataUserLogin[i].usernameValue
-            ) {
+        ) {
+            // Then I push the person they liked into their like array
             dataUserLogin[i].likes.push(req.body[1])
             successfulLike = true;
             fs.writeFile('../storage/User.json', JSON.stringify(dataUserLogin, null, 4), (err) => {
@@ -180,7 +177,7 @@ app.post('/likes', (req, res) => {
             res.json('success')
         }
     }
-    if (successfulLike == false){
+    if (successfulLike == false) {
         res.json('fail')
     }
 

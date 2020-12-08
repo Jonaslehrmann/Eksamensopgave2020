@@ -8,17 +8,17 @@ window.onload = function checkLogin() {
     }
 }
 // the username in local storage is used to identify the user
-window.onload = function userGet(){
+window.onload = function userGet() {
     let profileToken = JSON.parse(localStorage.getItem('username'))
     let retrieveUsername = {
         username: profileToken
-    } 
+    }
 
     retrieveUserInfo(retrieveUsername)
 }
 
 //By comparing the localstorage username with usernames in our database, I find the information of the user
-function retrieveUserInfo(retrieveUsername){
+function retrieveUserInfo(retrieveUsername) {
     fetch('http://localhost:3003/userGet', {
         method: 'POST',
         headers: {

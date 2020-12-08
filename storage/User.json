@@ -1,19 +1,9 @@
 [
     {
-        "fullNameValue": "qweqwe",
-        "usernameValue": "qweqwe",
-        "genderValue": "male",
-        "passwordValue": "qweqweqe",
-        "likes": [
-            "jan"
-        ]
-    },
-    {
-        "fullNameValue": "mette1",
-        "usernameValue": "jonas1",
-        "genderValue": "female",
-        "passwordValue": "mette",
-        "likes": [
-        ]
+        "fullNameValue": "Test bruger",
+        "usernameValue": "testbruger1",
+        "genderValue": "other",
+        "passwordValue": "testbruger",
+        "likes": []
     }
 ]
