@@ -125,7 +125,7 @@ app.post('/userEdit', (req, res) => {
             // I have to make sure that the likes won't get lost when I rewrite the user
             console.log(likedUsers)
             dataUserStorage.splice([i], 1)
-
+            
             // I create a new user, though with the same username and likes as before
             let editedUser = {
                 fullNameValue: req.body.fullNameValue,

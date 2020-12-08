@@ -36,10 +36,11 @@ function showUser(userData) {
         document.getElementById("gender").innerHTML = userData[i].gender
         localStorage.setItem("like", JSON.stringify(userData[i].username))
     }
+}
     // Funktionen virker ikke med andre end den sidste user, fordi jeg ikke kan stoppe mit array
     // Jeg ville nok prøve mig ad med await eller async 
     // Eventuelt kunne jeg prøve en funktion af, der henter ny bruger ned, hver gang man trykker like/dislike
-}
+
 // adds the liked users username to an array called "likes" which is unique to every user
 function likeUser() {
     let myUsername = [JSON.parse(localStorage.getItem("username")), JSON.parse(localStorage.getItem("like"))]
