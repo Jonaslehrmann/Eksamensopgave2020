@@ -95,11 +95,11 @@ app.delete('/deleteuser', (req, res) => {
 // Login controller
 app.post('/login', (req, res) => {
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
-
+    let succesfulLogin = false;
 
     for (var i = 0; i < dataUserLogin.length; i++) {
         // once again a mock variable to determine success or fail
-        let succesfulLogin = false;
+        
         if (
             // If username and password matches a user in the database, send back that information
             req.body.usernameAttempt == dataUserLogin[i].usernameValue
@@ -108,7 +108,7 @@ app.post('/login', (req, res) => {
             succesfulLogin = true;
         }
     }
-    if (succesfulLogin = false) {
+    if (succesfulLogin == false) {
         res.json('fail')
     }
 });

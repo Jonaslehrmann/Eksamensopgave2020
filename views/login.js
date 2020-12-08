@@ -6,7 +6,7 @@ window.onload = function checkLogin() {
     }
 }
 
-const username = document.getElementById('username');
+const username = document.getElementById("username");
 const password = document.getElementById('password');
 const form = document.querySelector('form');
 const loginButton = document.querySelector('#loginButton');

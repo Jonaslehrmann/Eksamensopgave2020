@@ -9,19 +9,12 @@
         ]
     },
     {
-        "fullNameValue": "jonas1",
+        "fullNameValue": "mette1",
         "usernameValue": "jonas1",
-        "genderValue": "male",
-        "passwordValue": "jonas1",
+        "genderValue": "female",
+        "passwordValue": "mette",
         "likes": [
-            "peter123"
+    
         ]
-    },
-    {
-        "fullNameValue": "hejhej",
-        "usernameValue": "hejhej",
-        "genderValue": "male",
-        "passwordValue": "hejhej",
-        "likes": []
     }
 ]
