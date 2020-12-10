@@ -5,13 +5,9 @@
         "genderValue": "other",
         "passwordValue": "testbruger",
         "likes": [
-            "mette",
-            "Peter",
-            "peter123"
         ],
         "matches": [
-            "mette",
-            "Peter"
+           
         ]
     }
 ]
