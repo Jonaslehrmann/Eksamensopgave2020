@@ -4,7 +4,14 @@
         "usernameValue": "testbruger1",
         "genderValue": "other",
         "passwordValue": "testbruger",
-        "likes": ["mette", "Peter"],
-        "matches":["mette", "Peter"]
+        "likes": [
+            "mette",
+            "Peter",
+            "peter123"
+        ],
+        "matches": [
+            "mette",
+            "Peter"
+        ]
     }
 ]

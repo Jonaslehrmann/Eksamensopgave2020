@@ -18,14 +18,14 @@ class UserProfile {
         this.likes = likes
     }
 }
-let user1 = new UserProfile("Patrik Patriksen", "patrikmanden123", "male", "", ["jonas1"])
+let user1 = new UserProfile("Patrik Patriksen", "patrikmanden123", "male", "", ["testbruger1"])
 let user2 = new UserProfile("Patricia Patriciasen", "patriciaersej123", "female", "", [])
-let user3 = new UserProfile("Peter Petersen", "peter123", "male", "peter1234", "jonas1")
+let user3 = new UserProfile("Peter Petersen", "peter123", "male", "peter1234", ["testbruger1"])
 let users = [user1, user2, user3]
 
 // Register controller
 app.post('/user', (req, res) => {
-
+    //Register model
     let dataUserSignUp = JSON.parse(fs.readFileSync('../storage/User.json'))
 
     // I make sure the password is unique by comparing to the users in storage//User.json
@@ -39,12 +39,13 @@ app.post('/user', (req, res) => {
     res.json('success')
     fs.writeFile('../storage/User.json', JSON.stringify(dataUserSignUp, null, 4), (err) => {
         if (err) throw err;
-        console.log('Data written to file');
     })
 });
 
 // Show profile Controller
 app.post('/userGet', (req, res) => {
+    // Show profile model
+
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
     let retrievedUser = false;
     // I loop through my users to find the person whose username matches
@@ -66,6 +67,7 @@ app.post('/userGet', (req, res) => {
 
 // Delete User Controller
 app.delete('/deleteuser', (req, res) => {
+    //Show profile model
 
     // Mock variable to determine success or fail in a loop
     let mongoDBSucks = true;
@@ -90,6 +92,8 @@ app.delete('/deleteuser', (req, res) => {
 
 // Login controller
 app.post('/login', (req, res) => {
+    //Login model
+
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
     let succesfulLogin = false;
 
@@ -111,8 +115,7 @@ app.post('/login', (req, res) => {
 
 // Edit profile controller
 app.post('/userEdit', (req, res) => {
-    // when the server response wasn't working, I console.log'ed my way through each variable to find the failure
-    // console.log('vi når til serveren')
+    //Edit profile model
 
     let dataUserStorage = JSON.parse(fs.readFileSync('../storage/User.json'))
     let succesfulLogin = false;
@@ -149,15 +152,17 @@ app.post('/userEdit', (req, res) => {
 });
 
 
-//retrieves the hardcoded users
+//Retrieve user controller
 app.get('/importUser', (req, res, next) => {
+    //retrieve user model
     res.json(users)
 })
 
 
 //ADD LIKES TO JSON FILE
-
+//Add likes controller
 app.post('/likes', (req, res) => {
+    //Add likes model
     let dataUserLogin = JSON.parse(fs.readFileSync('../storage/User.json'))
 
     let successfulLike = false;
