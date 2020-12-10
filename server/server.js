@@ -18,9 +18,9 @@ class UserProfile {
         this.likes = likes
     }
 }
-let user1 = new UserProfile("Patrik Patriksen", "patrikmanden123", "male", "", ["testbruger1"])
+let user1 = new UserProfile("Patrik Patriksen", "patrikmanden123", "male", "", ["testbruger"])
 let user2 = new UserProfile("Patricia Patriciasen", "patriciaersej123", "female", "", [])
-let user3 = new UserProfile("Peter Petersen", "peter123", "male", "peter1234", ["testbruger1"])
+let user3 = new UserProfile("Peter Petersen", "peter123", "male", "peter1234", "testbruger1")
 let users = [user1, user2, user3]
 
 // Register controller
